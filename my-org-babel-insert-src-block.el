@@ -65,3 +65,7 @@
     (insert my-org-babel-insert-src-block-noweb-ref-block-header))
   (insert "\n\n#+end_src\n")
   (previous-line)(previous-line))
+
+(define-key org-mode-map
+  (kbd "C-. s")
+  'my-org-babel-insert-src-block)

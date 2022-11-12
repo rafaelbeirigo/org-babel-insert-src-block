@@ -229,7 +229,7 @@ These are the [[https://orgmode.org/worg/org-contrib/babel/languages/index.html]
 Add a keybinding
 
 @@latex: \noindent@@ \langle Add a keybinding \rangle\equiv
-#+begin_src emacs-lisp :noweb-ref Add a keybinding
+#+begin_src emacs-lisp :tangle yes :noweb-ref Add a keybinding
 (define-key org-mode-map
   (kbd "C-. s")
   'my-org-babel-insert-src-block)
