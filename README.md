@@ -1,27 +1,27 @@
 
 # Table of Contents
 
-1.  [Insert Source Code Block for Org Babel&#x2014;ask for a name](#org9e5f0ed)
-    1.  [Introduction](#org698c43b)
-    2.  [Function to insert an Org Babel code block](#orgbff39fc)
-    3.  [Ask for a name and update variable](#orgf9a230c)
-    4.  [Update other variables dependent on the name](#org0eb2046)
-    5.  [Update section name header variable](#org0967d9e)
-    6.  [Get the section name header](#org1342506)
-    7.  [Update noweb-ref block header variable](#orga4e6b1a)
-    8.  [Get noweb-ref block header](#orged363bc)
-    9.  [Insert the code block](#orgf516f32)
-    10. [Insert the language](#orgcf99d1d)
-    11. [Languages](#org8531b75)
-    12. [Insert the block name, if non-empty](#org255d2a0)
-    13. [Insert the section name header, if non-empty](#org19b15bf)
-    14. [Insert the noweb-ref block header, if non-empty](#org1903a11)
-    15. [Add a keybinding](#orgfd9b966)
-2.  [License](#org240c948)
+1.  [Insert Source Code Block for Org Babel&#x2014;ask for a name](#org8ec62ad)
+    1.  [Introduction](#org3cdcf64)
+    2.  [Function to insert an Org Babel code block](#org334ba9c)
+    3.  [Ask for a name and update variable](#org968db46)
+    4.  [Update other variables dependent on the name](#org2e14785)
+    5.  [Update section name header variable](#orgb145eb8)
+    6.  [Get the section name header](#org8b518da)
+    7.  [Update noweb-ref block header variable](#org28b50d5)
+    8.  [Get noweb-ref block header](#org45fec22)
+    9.  [Insert the code block](#orgbbca812)
+    10. [Insert the language](#org44e2cb8)
+    11. [Languages](#org2735894)
+    12. [Insert the block name, if non-empty](#org585b400)
+    13. [Insert the section name header, if non-empty](#orgb45fb4c)
+    14. [Insert the noweb-ref block header, if non-empty](#org656f447)
+    15. [Add a keybinding](#orgb80be7a)
+2.  [License](#org5b89b36)
 
 
 
-<a id="org9e5f0ed"></a>
+<a id="org8ec62ad"></a>
 
 # Insert Source Code Block for Org Babel&#x2014;ask for a name
 
@@ -45,7 +45,7 @@ For me, this was the first not-so-short project that I used LP, and I
 loved it!
 
 
-<a id="org698c43b"></a>
+<a id="org3cdcf64"></a>
 
 ## Introduction
 
@@ -62,7 +62,7 @@ blocks.  This would help a lot in my literate programming activities.
     <<Function to insert an Org Babel code block>>
 
 
-<a id="orgbff39fc"></a>
+<a id="org334ba9c"></a>
 
 ## Function to insert an Org Babel code block
 
@@ -79,7 +79,7 @@ the function is depicted below.
       <<Insert the code block>>)
 
 
-<a id="orgf9a230c"></a>
+<a id="org968db46"></a>
 
 ## Ask for a name and update variable
 
@@ -93,7 +93,7 @@ the function is depicted below.
           (read-string "Name: "))
 
 
-<a id="org0eb2046"></a>
+<a id="org2e14785"></a>
 
 ## Update other variables dependent on the name
 
@@ -103,7 +103,7 @@ the function is depicted below.
     <<Update noweb-ref block header variable>>
 
 
-<a id="org0967d9e"></a>
+<a id="orgb145eb8"></a>
 
 ## Update section name header variable
 
@@ -117,7 +117,7 @@ the function is depicted below.
           <<Get the section name header>>)
 
 
-<a id="org1342506"></a>
+<a id="org8b518da"></a>
 
 ## Get the section name header
 
@@ -127,7 +127,7 @@ the function is depicted below.
       (concat "\\noindent\\langle " <<Block name>> " \\rangle\\equiv"))
 
 
-<a id="orga4e6b1a"></a>
+<a id="org28b50d5"></a>
 
 ## Update noweb-ref block header variable
 
@@ -141,7 +141,7 @@ the function is depicted below.
           <<Get noweb-ref block header>>)
 
 
-<a id="orged363bc"></a>
+<a id="org45fec22"></a>
 
 ## Get noweb-ref block header
 
@@ -151,7 +151,7 @@ the function is depicted below.
       (concat " :noweb-ref " <<Block name>>))
 
 
-<a id="orgf516f32"></a>
+<a id="orgbbca812"></a>
 
 ## Insert the code block
 
@@ -166,7 +166,7 @@ the function is depicted below.
     (previous-line)(previous-line)
 
 
-<a id="orgcf99d1d"></a>
+<a id="org44e2cb8"></a>
 
 ## Insert the language
 
@@ -178,7 +178,7 @@ Insert the language
                       <<Languages>>))
 
 
-<a id="org8531b75"></a>
+<a id="org2735894"></a>
 
 ## Languages
 
@@ -233,7 +233,7 @@ These are the [languages supported by Org Babel](https://orgmode.org/worg/org-co
      "sqlite")
 
 
-<a id="org255d2a0"></a>
+<a id="org585b400"></a>
 
 ## Insert the block name, if non-empty
 
@@ -244,7 +244,7 @@ These are the [languages supported by Org Babel](https://orgmode.org/worg/org-co
       (insert <<Block name>> "\n\n"))
 
 
-<a id="org19b15bf"></a>
+<a id="orgb45fb4c"></a>
 
 ## Insert the section name header, if non-empty
 
@@ -254,7 +254,7 @@ These are the [languages supported by Org Babel](https://orgmode.org/worg/org-co
       (insert <<Section name header>> "\n"))
 
 
-<a id="org1903a11"></a>
+<a id="org656f447"></a>
 
 ## Insert the noweb-ref block header, if non-empty
 
@@ -264,7 +264,7 @@ These are the [languages supported by Org Babel](https://orgmode.org/worg/org-co
       (insert <<noweb-ref block header>>))
 
 
-<a id="orgfd9b966"></a>
+<a id="orgb80be7a"></a>
 
 ## Add a keybinding
 
@@ -277,7 +277,7 @@ Add a keybinding
       'my-org-babel-insert-src-block)
 
 
-<a id="org240c948"></a>
+<a id="org5b89b36"></a>
 
 # License
 
@@ -285,9 +285,7 @@ This work is dedicated to the public domain.  To the extent possible under law, 
 
 <p xmlns:dct="http://purl.org/dc/terms/">
 
-<a rel="license"
-
-href="http://creativecommons.org/publicdomain/zero/1.0/">
+<a rel="licensehref="http://creativecommons.org/publicdomain/zero/1.0/">
 
 <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
 
