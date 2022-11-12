@@ -51,7 +51,7 @@ The code block may or may not have a name, and this will determine
 several things about the tangling process.  The general structure of
 the function is depicted below.
 
-\noindent\langle Function to insert an Org Babel code block \rangle\equiv
+@@latex: \noindent@@ \langle Function to insert an Org Babel code block \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Function to insert an Org Babel code block
 (defun my-org-babel-insert-src-block ()
   (interactive)
@@ -62,12 +62,12 @@ the function is depicted below.
 
 ** Ask for a name and update variable
 
-\noindent\langle Block name \rangle\equiv
+@@latex: \noindent@@ \langle Block name \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Block name
 my-org-babel-insert-src-block-name
 #+end_src
 
-\noindent\langle Ask for a name and update variable \rangle\equiv
+@@latex: \noindent@@ \langle Ask for a name and update variable \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Ask for a name and update variable :session popopopipo
 (setq <<Block name>>
       (read-string "Name: "))
@@ -75,7 +75,7 @@ my-org-babel-insert-src-block-name
 
 ** Update other variables dependent on the name
 
-\noindent\langle Update other variables dependent on the name \rangle\equiv
+@@latex: \noindent@@ \langle Update other variables dependent on the name \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Update other variables dependent on the name
 <<Update section name header variable>>
 <<Update noweb-ref block header variable>>
@@ -83,12 +83,12 @@ my-org-babel-insert-src-block-name
 
 ** Update section name header variable
 
-\noindent\langle Section name header \rangle\equiv
+@@latex: \noindent@@ \langle Section name header \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Section name header
 my-org-babel-insert-src-block-section-name-header
 #+end_src
 
-\noindent\langle Update section name header variable \rangle\equiv
+@@latex: \noindent@@ \langle Update section name header variable \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Update section name header variable
 (setq <<Section name header>>
       <<Get the section name header>>)
@@ -96,20 +96,20 @@ my-org-babel-insert-src-block-section-name-header
 
 ** Get the section name header
 
-\noindent\langle Get the section name header \rangle\equiv
+@@latex: \noindent@@ \langle Get the section name header \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Get the section name header
 (if (string= <<Block name>> "") ""
-  (concat "\\noindent\\langle " <<Block name>> " \\rangle\\equiv"))
+  (concat "\@@latex: \noindent@@ \\langle " <<Block name>> " \\rangle\\equiv"))
 #+end_src
 
 ** Update noweb-ref block header variable
 
-\noindent\langle noweb-ref block header \rangle\equiv
+@@latex: \noindent@@ \langle noweb-ref block header \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref noweb-ref block header
 my-org-babel-insert-src-block-noweb-ref-block-header
 #+end_src
 
-\noindent\langle Update noweb-ref block header variable \rangle\equiv
+@@latex: \noindent@@ \langle Update noweb-ref block header variable \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Update noweb-ref block header variable
 (setq <<noweb-ref block header>>
       <<Get noweb-ref block header>>)
@@ -117,7 +117,7 @@ my-org-babel-insert-src-block-noweb-ref-block-header
 
 ** Get noweb-ref block header
 
-\noindent\langle Get noweb-ref block header \rangle\equiv
+@@latex: \noindent@@ \langle Get noweb-ref block header \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Get noweb-ref block header
 (if (string= <<Block name>> "") ""
   (concat " :noweb-ref " <<Block name>>))
@@ -125,7 +125,7 @@ my-org-babel-insert-src-block-noweb-ref-block-header
 
 ** Insert the code block
 
-\noindent\langle Insert the code block \rangle\equiv
+@@latex: \noindent@@ \langle Insert the code block \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Insert the code block
 <<Insert the block name, if non-empty>>
 <<Insert the section name header, if non-empty>>
@@ -139,7 +139,7 @@ my-org-babel-insert-src-block-noweb-ref-block-header
 ** Insert the language
 
 Insert the language
-\noindent\langle Insert the language \rangle\equiv
+@@latex: \noindent@@ \langle Insert the language \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Insert the language
 (insert
  (completing-read "Language: "
@@ -150,7 +150,7 @@ Insert the language
 
 These are the [[https://orgmode.org/worg/org-contrib/babel/languages/index.html][languages supported by Org Babel]], as of November, 2022.
 
-\noindent\langle Languages \rangle\equiv
+@@latex: \noindent@@ \langle Languages \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Languages
 (list
  "C"
@@ -201,7 +201,7 @@ These are the [[https://orgmode.org/worg/org-contrib/babel/languages/index.html]
 
 ** Insert the block name, if non-empty
 
-\noindent\langle Insert the block name, if non-empty \rangle\equiv
+@@latex: \noindent@@ \langle Insert the block name, if non-empty \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Insert the block name, if non-empty
 (unless (string= <<Block name>> "")
   (org-insert-heading)
@@ -210,7 +210,7 @@ These are the [[https://orgmode.org/worg/org-contrib/babel/languages/index.html]
 
 ** Insert the section name header, if non-empty
 
-\noindent\langle Insert the section name header, if non-empty \rangle\equiv
+@@latex: \noindent@@ \langle Insert the section name header, if non-empty \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Insert the section name header, if non-empty
 (unless (string= <<Section name header>> "")
   (insert <<Section name header>> "\n"))
@@ -218,7 +218,7 @@ These are the [[https://orgmode.org/worg/org-contrib/babel/languages/index.html]
 
 ** Insert the noweb-ref block header, if non-empty
 
-\noindent\langle Insert the noweb-ref block header, if non-empty \rangle\equiv
+@@latex: \noindent@@ \langle Insert the noweb-ref block header, if non-empty \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Insert the noweb-ref block header, if non-empty
 (unless (string= <<noweb-ref block header>> "")
   (insert <<noweb-ref block header>>))
@@ -228,7 +228,7 @@ These are the [[https://orgmode.org/worg/org-contrib/babel/languages/index.html]
 
 Add a keybinding
 
-\noindent\langle Add a keybinding \rangle\equiv
+@@latex: \noindent@@ \langle Add a keybinding \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Add a keybinding
 (define-key org-mode-map
   (kbd "C-. s")
