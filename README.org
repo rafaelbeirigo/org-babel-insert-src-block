@@ -1,0 +1,7 @@
+
+#+HTML: <p xmlns:dct="http://purl.org/dc/terms/">
+#+HTML:   <a rel="license"
+#+HTML:      href="http://creativecommons.org/publicdomain/zero/1.0/">
+#+HTML:     <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+#+HTML:   </a>
+#+HTML: </p>
