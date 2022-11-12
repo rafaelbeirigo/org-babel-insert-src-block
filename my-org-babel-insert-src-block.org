@@ -1,0 +1,236 @@
+#+PROPERTY: header-args :noweb no-export :eval no :tangle no :results none
+#+latex_header: \usepackage{verbatim}
+#+latex_header: \newlength\myverbindent 
+#+latex_header: \setlength\myverbindent{1.1em} % change this to change indentation
+#+latex_header: \makeatletter
+#+latex_header: \def\verbatim@processline{%
+#+latex_header:   \hspace{\myverbindent}\the\verbatim@line\par}
+#+latex_header: \makeatother
+
+* Insert Source Code Block for Org Babel---ask for a name
+
+This project is a function for Org Babel that, before inserting a
+source code block, ask the user for a name.  If the user does not
+inform a name, nothing changes.  But if the user does inform a name,
+the function will automatically
+- decorate the block with a nicelly formatted string,
+- insert a =:noweb-ref= for the block, and
+- create an Org heading for the code block section.
+
+The idea is to make it easier to do [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]] on [[https://en.wikipedia.org/wiki/GNU_Emacs][Emacs]].
+
+All the text below /is/ literate programming (LP) itself: the ideas
+and divagations are mixed with the source code, and the final product
+is automatically extracted from this text via /tangling/.
+
+Thus, the whole entire source code for the program is listed below!
+For me, this was the first not-so-short project that I used LP, and I
+loved it!
+
+** Introduction
+
+Org Babel has this nice little functionality of
+
+#+begin_quote
+Insert[ing] a block structure of the type =#+begin_foo/#+end_foo=.
+#+end_quote
+
+using the function =org-insert-structure-template=.  This is very
+practical, because I have to type less.
+
+What I /wish/ Org Babel had was a way to insert the /name/ of the code
+blocks.  This would help a lot in my literate programming activities.
+
+#+begin_src emacs-lisp :tangle yes
+<<Function to insert an Org Babel code block>>
+#+end_src
+
+** Function to insert an Org Babel code block
+
+The code block may or may not have a name, and this will determine
+several things about the tangling process.  The general structure of
+the function is depicted below.
+
+\noindent\langle Function to insert an Org Babel code block \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Function to insert an Org Babel code block
+(defun my-org-babel-insert-src-block ()
+  (interactive)
+  <<Ask for a name and update variable>>
+  <<Update other variables dependent on the name>>
+  <<Insert the code block>>)
+#+end_src
+
+** Ask for a name and update variable
+
+\noindent\langle Block name \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Block name
+my-org-babel-insert-src-block-name
+#+end_src
+
+\noindent\langle Ask for a name and update variable \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Ask for a name and update variable :session popopopipo
+(setq <<Block name>>
+      (read-string "Name: "))
+#+end_src
+
+** Update other variables dependent on the name
+
+\noindent\langle Update other variables dependent on the name \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Update other variables dependent on the name
+<<Update section name header variable>>
+<<Update noweb-ref block header variable>>
+#+end_src
+
+** Update section name header variable
+
+\noindent\langle Section name header \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Section name header
+my-org-babel-insert-src-block-section-name-header
+#+end_src
+
+\noindent\langle Update section name header variable \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Update section name header variable
+(setq <<Section name header>>
+      <<Get the section name header>>)
+#+end_src
+
+** Get the section name header
+
+\noindent\langle Get the section name header \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Get the section name header
+(if (string= <<Block name>> "") ""
+  (concat "\\noindent\\langle " <<Block name>> " \\rangle\\equiv"))
+#+end_src
+
+** Update noweb-ref block header variable
+
+\noindent\langle noweb-ref block header \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref noweb-ref block header
+my-org-babel-insert-src-block-noweb-ref-block-header
+#+end_src
+
+\noindent\langle Update noweb-ref block header variable \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Update noweb-ref block header variable
+(setq <<noweb-ref block header>>
+      <<Get noweb-ref block header>>)
+#+end_src
+
+** Get noweb-ref block header
+
+\noindent\langle Get noweb-ref block header \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Get noweb-ref block header
+(if (string= <<Block name>> "") ""
+  (concat " :noweb-ref " <<Block name>>))
+#+end_src
+
+** Insert the code block
+
+\noindent\langle Insert the code block \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Insert the code block
+<<Insert the block name, if non-empty>>
+<<Insert the section name header, if non-empty>>
+(insert "#+begin_src ")
+<<Insert the language>>
+<<Insert the noweb-ref block header, if non-empty>>
+(insert "\n\n#+end_src\n")
+(previous-line)(previous-line)
+#+end_src
+
+** Insert the language
+
+Insert the language
+\noindent\langle Insert the language \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Insert the language
+(insert
+ (completing-read "Language: "
+                  <<Languages>>))
+#+end_src
+
+** Languages
+
+These are the [[https://orgmode.org/worg/org-contrib/babel/languages/index.html][languages supported by Org Babel]], as of November, 2022.
+
+\noindent\langle Languages \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Languages
+(list
+ "C"
+ "D"
+ "F90"
+ "R"
+ "awk"
+ "calc"
+ "clojure"
+ "comint"
+ "cpp"
+ "css"
+ "ditaa"
+ "dot"
+ "elisp"
+ "emacs-lisp"
+ "eshell"
+ "forth"
+ "gnuplot"
+ "groovy"
+ "haskell"
+ "java"
+ "js"
+ "julia"
+ "latex"
+ "lisp"
+ "lua"
+ "ly"
+ "makefile"
+ "matlab"
+ "max"
+ "ocaml"
+ "octave"
+ "org"
+ "perl"
+ "plantuml"
+ "processing"
+ "python"
+ "ruby"
+ "sass"
+ "scheme"
+ "screen"
+ "sed"
+ "shell"
+ "sql"
+ "sqlite")
+#+end_src
+
+** Insert the block name, if non-empty
+
+\noindent\langle Insert the block name, if non-empty \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Insert the block name, if non-empty
+(unless (string= <<Block name>> "")
+  (org-insert-heading)
+  (insert <<Block name>> "\n\n"))
+#+end_src
+
+** Insert the section name header, if non-empty
+
+\noindent\langle Insert the section name header, if non-empty \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Insert the section name header, if non-empty
+(unless (string= <<Section name header>> "")
+  (insert <<Section name header>> "\n"))
+#+end_src
+
+** Insert the noweb-ref block header, if non-empty
+
+\noindent\langle Insert the noweb-ref block header, if non-empty \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Insert the noweb-ref block header, if non-empty
+(unless (string= <<noweb-ref block header>> "")
+  (insert <<noweb-ref block header>>))
+#+end_src
+ 
+** Add a keybinding
+
+Add a keybinding
+
+\noindent\langle Add a keybinding \rangle\equiv
+#+begin_src emacs-lisp :noweb-ref Add a keybinding
+(define-key org-mode-map
+  (kbd "C-. s")
+  'my-org-babel-insert-src-block)
+#+end_src

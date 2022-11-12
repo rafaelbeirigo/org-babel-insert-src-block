@@ -1,0 +1,285 @@
+% Created 2022-11-12 Sat 00:29
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage[colorlinks=true,allcolors=NavyBlue]{hyperref}
+\usepackage{verbatim}
+\newlength\myverbindent
+\setlength\myverbindent{1.1em} % change this to change indentation
+\makeatletter
+\def\verbatim@processline{%
+\hspace{\myverbindent}\the\verbatim@line\par}
+\makeatother
+\author{Rafael Beirigo}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Rafael Beirigo},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.2 (Org mode 9.5.5)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+
+\section{Insert Source Code Block for Org Babel---ask for a name}
+\label{sec:org80d8b9d}
+
+This project is a function for Org Babel that, before inserting a
+source code block, ask the user for a name.  If the user does not
+inform a name, nothing changes.  But if the user does inform a name,
+the function will automatically
+\begin{itemize}
+\item decorate the block with a nicelly formatted string,
+\item insert a \texttt{:noweb-ref} for the block, and
+\item create an Org heading for the code block section.
+\end{itemize}
+
+The idea is to make it easier to do \href{https://en.wikipedia.org/wiki/Literate\_programming}{literate programming} on \href{https://en.wikipedia.org/wiki/GNU\_Emacs}{Emacs}.
+
+All the text below \emph{is} literate programming (LP) itself: the ideas
+and divagations are mixed with the source code, and the final product
+is automatically extracted from this text via \emph{tangling}.
+
+Thus, the whole entire source code for the program is listed below!
+For me, this was the first not-so-short project that I used LP, and I
+loved it!
+
+\subsection{Introduction}
+\label{sec:orgc47a519}
+
+Org Babel has this nice little functionality of
+
+\begin{quote}
+Insert[ing] a block structure of the type \texttt{\#+begin\_foo/\#+end\_foo}.
+\end{quote}
+
+using the function \texttt{org-insert-structure-template}.  This is very
+practical, because I have to type less.
+
+What I \emph{wish} Org Babel had was a way to insert the \emph{name} of the code
+blocks.  This would help a lot in my literate programming activities.
+
+\begin{verbatim}
+<<Function to insert an Org Babel code block>>
+\end{verbatim}
+
+\subsection{Function to insert an Org Babel code block}
+\label{sec:org7496b16}
+
+The code block may or may not have a name, and this will determine
+several things about the tangling process.  The general structure of
+the function is depicted below.
+
+\noindent\(\langle\) Function to insert an Org Babel code block \(\rangle \equiv\)
+\begin{verbatim}
+(defun my-org-babel-insert-src-block ()
+  (interactive)
+  <<Ask for a name and update variable>>
+  <<Update other variables dependent on the name>>
+  <<Insert the code block>>)
+\end{verbatim}
+
+\subsection{Ask for a name and update variable}
+\label{sec:org270e02a}
+
+\noindent\(\langle\) Block name \(\rangle \equiv\)
+\begin{verbatim}
+my-org-babel-insert-src-block-name
+\end{verbatim}
+
+\noindent\(\langle\) Ask for a name and update variable \(\rangle \equiv\)
+\begin{verbatim}
+(setq <<Block name>>
+      (read-string "Name: "))
+\end{verbatim}
+
+\subsection{Update other variables dependent on the name}
+\label{sec:org230fb6e}
+
+\noindent\(\langle\) Update other variables dependent on the name \(\rangle \equiv\)
+\begin{verbatim}
+<<Update section name header variable>>
+<<Update noweb-ref block header variable>>
+\end{verbatim}
+
+\subsection{Update section name header variable}
+\label{sec:orgec7be5e}
+
+\noindent\(\langle\) Section name header \(\rangle \equiv\)
+\begin{verbatim}
+my-org-babel-insert-src-block-section-name-header
+\end{verbatim}
+
+\noindent\(\langle\) Update section name header variable \(\rangle \equiv\)
+\begin{verbatim}
+(setq <<Section name header>>
+      <<Get the section name header>>)
+\end{verbatim}
+
+\subsection{Get the section name header}
+\label{sec:org313192e}
+
+\noindent\(\langle\) Get the section name header \(\rangle \equiv\)
+\begin{verbatim}
+(if (string= <<Block name>> "") ""
+  (concat "\\noindent\\langle " <<Block name>> " \\rangle\\equiv"))
+\end{verbatim}
+
+\subsection{Update noweb-ref block header variable}
+\label{sec:orgcf8b0d1}
+
+\noindent\(\langle\) noweb-ref block header \(\rangle \equiv\)
+\begin{verbatim}
+my-org-babel-insert-src-block-noweb-ref-block-header
+\end{verbatim}
+
+\noindent\(\langle\) Update noweb-ref block header variable \(\rangle \equiv\)
+\begin{verbatim}
+(setq <<noweb-ref block header>>
+      <<Get noweb-ref block header>>)
+\end{verbatim}
+
+\subsection{Get noweb-ref block header}
+\label{sec:orgaf09e42}
+
+\noindent\(\langle\) Get noweb-ref block header \(\rangle \equiv\)
+\begin{verbatim}
+(if (string= <<Block name>> "") ""
+  (concat " :noweb-ref " <<Block name>>))
+\end{verbatim}
+
+\subsection{Insert the code block}
+\label{sec:org5a0d1fd}
+
+\noindent\(\langle\) Insert the code block \(\rangle \equiv\)
+\begin{verbatim}
+<<Insert the block name, if non-empty>>
+<<Insert the section name header, if non-empty>>
+(insert "#+begin_src ")
+<<Insert the language>>
+<<Insert the noweb-ref block header, if non-empty>>
+(insert "\n\n#+end_src\n")
+(previous-line)(previous-line)
+\end{verbatim}
+
+\subsection{Insert the language}
+\label{sec:org9d44dfe}
+
+Insert the language
+\noindent\(\langle\) Insert the language \(\rangle \equiv\)
+\begin{verbatim}
+(insert
+ (completing-read "Language: "
+                  <<Languages>>))
+\end{verbatim}
+
+\subsection{Languages}
+\label{sec:orga6f17cd}
+
+These are the \href{https://orgmode.org/worg/org-contrib/babel/languages/index.html}{languages supported by Org Babel}, as of November, 2022.
+
+\noindent\(\langle\) Languages \(\rangle \equiv\)
+\begin{verbatim}
+(list
+ "C"
+ "D"
+ "F90"
+ "R"
+ "awk"
+ "calc"
+ "clojure"
+ "comint"
+ "cpp"
+ "css"
+ "ditaa"
+ "dot"
+ "elisp"
+ "emacs-lisp"
+ "eshell"
+ "forth"
+ "gnuplot"
+ "groovy"
+ "haskell"
+ "java"
+ "js"
+ "julia"
+ "latex"
+ "lisp"
+ "lua"
+ "ly"
+ "makefile"
+ "matlab"
+ "max"
+ "ocaml"
+ "octave"
+ "org"
+ "perl"
+ "plantuml"
+ "processing"
+ "python"
+ "ruby"
+ "sass"
+ "scheme"
+ "screen"
+ "sed"
+ "shell"
+ "sql"
+ "sqlite")
+\end{verbatim}
+
+\subsection{Insert the block name, if non-empty}
+\label{sec:org2212345}
+
+\noindent\(\langle\) Insert the block name, if non-empty \(\rangle \equiv\)
+\begin{verbatim}
+(unless (string= <<Block name>> "")
+  (org-insert-heading)
+  (insert <<Block name>> "\n\n"))
+\end{verbatim}
+
+\subsection{Insert the section name header, if non-empty}
+\label{sec:org155f751}
+
+\noindent\(\langle\) Insert the section name header, if non-empty \(\rangle \equiv\)
+\begin{verbatim}
+(unless (string= <<Section name header>> "")
+  (insert <<Section name header>> "\n"))
+\end{verbatim}
+
+\subsection{Insert the noweb-ref block header, if non-empty}
+\label{sec:orgbe84174}
+
+\noindent\(\langle\) Insert the noweb-ref block header, if non-empty \(\rangle \equiv\)
+\begin{verbatim}
+(unless (string= <<noweb-ref block header>> "")
+  (insert <<noweb-ref block header>>))
+\end{verbatim}
+
+\subsection{Add a keybinding}
+\label{sec:orgca29309}
+
+Add a keybinding
+
+\noindent\(\langle\) Add a keybinding \(\rangle \equiv\)
+\begin{verbatim}
+(define-key org-mode-map
+  (kbd "C-. s")
+  'my-org-babel-insert-src-block)
+\end{verbatim}
+\end{document}
