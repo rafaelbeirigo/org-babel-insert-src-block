@@ -99,7 +99,7 @@ my-org-babel-insert-src-block-section-name-header
 @@latex: \noindent@@ \langle Get the section name header \rangle\equiv
 #+begin_src emacs-lisp :noweb-ref Get the section name header
 (if (string= <<Block name>> "") ""
-  (concat "\@@latex: \noindent@@ \\langle " <<Block name>> " \\rangle\\equiv"))
+  (concat "@@latex: \\noindent@@ \\langle " <<Block name>> " \\rangle\\equiv"))
 #+end_src
 
 ** Update noweb-ref block header variable

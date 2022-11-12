@@ -4,7 +4,7 @@
         (read-string "Name: "))
   (setq my-org-babel-insert-src-block-section-name-header
         (if (string= my-org-babel-insert-src-block-name "") ""
-          (concat "\\noindent\\langle " my-org-babel-insert-src-block-name " \\rangle\\equiv")))
+          (concat "@@latex: \\noindent@@ \\langle " my-org-babel-insert-src-block-name " \\rangle\\equiv")))
   (setq my-org-babel-insert-src-block-noweb-ref-block-header
         (if (string= my-org-babel-insert-src-block-name "") ""
           (concat " :noweb-ref " my-org-babel-insert-src-block-name)))
