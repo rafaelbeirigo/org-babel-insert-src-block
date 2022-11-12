@@ -7,10 +7,10 @@
 #+latex_header:   \hspace{\myverbindent}\the\verbatim@line\par}
 #+latex_header: \makeatother
 
-* Insert Source Code Block for Org Babel---ask for a name
+* Insert Code Block---Ask for a Name
 
 This project is a function for Org Babel that, before inserting a
-source code block, ask the user for a name.  If the user does not
+source code block, asks the user for a name.  If the user does not
 inform a name, nothing changes.  But if the user does inform a name,
 the function will automatically
 - decorate the block with a nicelly formatted string,

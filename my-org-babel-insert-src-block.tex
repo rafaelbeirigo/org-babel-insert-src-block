@@ -1,4 +1,4 @@
-% Created 2022-11-12 Sat 01:39
+% Created 2022-11-12 Sat 01:43
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[dvipsnames]{xcolor}
@@ -37,11 +37,11 @@
 \tableofcontents
 
 
-\section{Insert Source Code Block for Org Babel---ask for a name}
-\label{sec:org4b031ed}
+\section{Insert Code Block---Ask for a Name}
+\label{sec:org63cfe8d}
 
 This project is a function for Org Babel that, before inserting a
-source code block, ask the user for a name.  If the user does not
+source code block, asks the user for a name.  If the user does not
 inform a name, nothing changes.  But if the user does inform a name,
 the function will automatically
 \begin{itemize}
@@ -61,7 +61,7 @@ For me, this was the first not-so-short project that I used LP, and I
 loved it!
 
 \subsection{Introduction}
-\label{sec:org20a8177}
+\label{sec:org449be63}
 
 Org Babel has this nice little functionality of
 
@@ -80,7 +80,7 @@ blocks.  This would help a lot in my literate programming activities.
 \end{verbatim}
 
 \subsection{Function to insert an Org Babel code block}
-\label{sec:org2e6e3b4}
+\label{sec:orgc246152}
 
 The code block may or may not have a name, and this will determine
 several things about the tangling process.  The general structure of
@@ -96,7 +96,7 @@ the function is depicted below.
 \end{verbatim}
 
 \subsection{Ask for a name and update variable}
-\label{sec:org6cd6ad9}
+\label{sec:orge5cc8d7}
 
  \noindent \(\langle\) Block name \(\rangle \equiv\)
 \begin{verbatim}
@@ -110,7 +110,7 @@ my-org-babel-insert-src-block-name
 \end{verbatim}
 
 \subsection{Update other variables dependent on the name}
-\label{sec:org9b380f9}
+\label{sec:orgb7c2928}
 
  \noindent \(\langle\) Update other variables dependent on the name \(\rangle \equiv\)
 \begin{verbatim}
@@ -119,7 +119,7 @@ my-org-babel-insert-src-block-name
 \end{verbatim}
 
 \subsection{Update section name header variable}
-\label{sec:org886e2c5}
+\label{sec:org4e2e856}
 
  \noindent \(\langle\) Section name header \(\rangle \equiv\)
 \begin{verbatim}
@@ -133,7 +133,7 @@ my-org-babel-insert-src-block-section-name-header
 \end{verbatim}
 
 \subsection{Get the section name header}
-\label{sec:org7daa13b}
+\label{sec:orgf2e3702}
 
  \noindent \(\langle\) Get the section name header \(\rangle \equiv\)
 \begin{verbatim}
@@ -142,7 +142,7 @@ my-org-babel-insert-src-block-section-name-header
 \end{verbatim}
 
 \subsection{Update noweb-ref block header variable}
-\label{sec:org1a117e0}
+\label{sec:orgaf82aea}
 
  \noindent \(\langle\) noweb-ref block header \(\rangle \equiv\)
 \begin{verbatim}
@@ -156,7 +156,7 @@ my-org-babel-insert-src-block-noweb-ref-block-header
 \end{verbatim}
 
 \subsection{Get noweb-ref block header}
-\label{sec:org2330e89}
+\label{sec:org268726a}
 
  \noindent \(\langle\) Get noweb-ref block header \(\rangle \equiv\)
 \begin{verbatim}
@@ -165,7 +165,7 @@ my-org-babel-insert-src-block-noweb-ref-block-header
 \end{verbatim}
 
 \subsection{Insert the code block}
-\label{sec:org2641108}
+\label{sec:org198c187}
 
  \noindent \(\langle\) Insert the code block \(\rangle \equiv\)
 \begin{verbatim}
@@ -179,7 +179,7 @@ my-org-babel-insert-src-block-noweb-ref-block-header
 \end{verbatim}
 
 \subsection{Insert the language}
-\label{sec:org11257e9}
+\label{sec:orgec67c22}
 
 Insert the language
  \noindent \(\langle\) Insert the language \(\rangle \equiv\)
@@ -190,7 +190,7 @@ Insert the language
 \end{verbatim}
 
 \subsection{Languages}
-\label{sec:orgd9be555}
+\label{sec:org195a119}
 
 These are the \href{https://orgmode.org/worg/org-contrib/babel/languages/index.html}{languages supported by Org Babel}, as of November, 2022.
 
@@ -244,7 +244,7 @@ These are the \href{https://orgmode.org/worg/org-contrib/babel/languages/index.h
 \end{verbatim}
 
 \subsection{Insert the block name, if non-empty}
-\label{sec:orgbb49928}
+\label{sec:org672cbc3}
 
  \noindent \(\langle\) Insert the block name, if non-empty \(\rangle \equiv\)
 \begin{verbatim}
@@ -254,7 +254,7 @@ These are the \href{https://orgmode.org/worg/org-contrib/babel/languages/index.h
 \end{verbatim}
 
 \subsection{Insert the section name header, if non-empty}
-\label{sec:org4b20a52}
+\label{sec:org6401521}
 
  \noindent \(\langle\) Insert the section name header, if non-empty \(\rangle \equiv\)
 \begin{verbatim}
@@ -263,7 +263,7 @@ These are the \href{https://orgmode.org/worg/org-contrib/babel/languages/index.h
 \end{verbatim}
 
 \subsection{Insert the noweb-ref block header, if non-empty}
-\label{sec:orgf33b215}
+\label{sec:orgc51bac3}
 
  \noindent \(\langle\) Insert the noweb-ref block header, if non-empty \(\rangle \equiv\)
 \begin{verbatim}
@@ -272,7 +272,7 @@ These are the \href{https://orgmode.org/worg/org-contrib/babel/languages/index.h
 \end{verbatim}
 
 \subsection{Add a keybinding}
-\label{sec:org69f90fe}
+\label{sec:orgd793293}
 
 Add a keybinding
 
@@ -284,7 +284,7 @@ Add a keybinding
 \end{verbatim}
 
 \section{License}
-\label{sec:org89c3bd1}
+\label{sec:org0d4e676}
 
 This work is dedicated to the public domain.  To the extent possible under law, all copyright and related or neighboring rights to this work are waived worldwide.
 \end{document}
